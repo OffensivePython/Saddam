@@ -8,12 +8,11 @@ DDoS Tool that supports:
 ![](http://2.bp.blogspot.com/-TkNwFJsznto/VOs3l0uSgDI/AAAAAAAAALQ/S5BNt8ULwpg/s1600/9.png)
 
 Read more about DDoS Amplification Attacks [here](http://www.pythonforpentesting.com/2015/02/ddos-amplification-attacks.html)
-
+Donate here: 1Gi5Rpz5RBEUpGknSwyRgqzk7b5bQ7Abp2
 # Requierments
  * OS Supports raw sockets
  * Python 2.7
  * [Pinject](https://github.com/OffensivePython/Pinject)
-
 # Usage
 ```
 	   _____           __    __              
