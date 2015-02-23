@@ -5,14 +5,14 @@ DDoS Tool that supports:
   * SNMP Amplification (Simple Network Management Protocol)
   * SSDP Amplification (Simple Service Discovery Protocol)
 
-![](http://url/to/img.png)
+![](http://2.bp.blogspot.com/-TkNwFJsznto/VOs3l0uSgDI/AAAAAAAAALQ/S5BNt8ULwpg/s1600/9.png)
 
 Read more about DDoS Amplification Attacks [here](http://www.pythonforpentesting.com/2015/02/ddos-amplification-attacks.html)
 
 # Requierments
  * OS Supports raw sockets
  * Python 2.7
- * [Pinject](http://2.bp.blogspot.com/-TkNwFJsznto/VOs3l0uSgDI/AAAAAAAAALQ/S5BNt8ULwpg/s1600/9.png)
+ * [Pinject](https://github.com/OffensivePython/Pinject)
 
 # Usage
 ```
