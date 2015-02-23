@@ -1,12 +1,41 @@
 # Saddam
-DDoS Amplification Tool that supports:
-  * DNS (Domain Name System)
-  * NTP (Network Time Protocol)
-  * SNMP (Simple Network Management Protocol)
-  * SSDP (Simple Service Discovery Protocol)
+DDoS Tool that supports:
+  * DNS Amplification (Domain Name System)
+  * NTP Amplification (Network Time Protocol)
+  * SNMP Amplification (Simple Network Management Protocol)
+  * SSDP Amplification (Simple Service Discovery Protocol)
 
-#Requierments
-    * Linux
-    * Python 2.7
-    * Pinject
-    
+![](http://url/to/img.png)
+
+Read more about DDoS Amplification Attacks [here](http://www.pythonforpentesting.com/2015/02/ddos-amplification-attacks.html)
+
+# Requierments
+ * OS Supports raw sockets
+ * Python 2.7
+ * [Pinject](http://2.bp.blogspot.com/-TkNwFJsznto/VOs3l0uSgDI/AAAAAAAAALQ/S5BNt8ULwpg/s1600/9.png)
+
+# Usage
+```
+	   _____           __    __              
+	  / ___/____ _____/ /___/ /___ _____ ___ 
+	  \__ \/ __ `/ __  / __  / __ `/ __ `__ \
+	 ___/ / /_/ / /_/ / /_/ / /_/ / / / / / /
+	/____/\__,_/\__,_/\__,_/\__,_/_/ /_/ /_/ 
+	https://github.com/OffensivePython/Saddam
+	   https://twitter.com/OffensivePython
+
+Usage: 
+Saddam.py target.com [options]        # DDoS
+Saddam.py benchmark [options]         # Calculate AMPLIFICATION factor
+
+
+Options:
+  -h, --help            show this help message and exit
+  -d FILE:FILE|DOMAIN, --dns=FILE:FILE|DOMAIN
+                        DNS Amplification File and Domains to Resolve (e.g:
+                        dns.txt:[evildomain.com|domains_file.txt]
+  -n FILE, --ntp=FILE   NTP Amplification file
+  -s FILE, --snmp=FILE  SNMP Amplification file
+  -p FILE, --ssdp=FILE  SSDP Amplification file
+  -t N, --threads=N     Number of threads (default=1)
+```
