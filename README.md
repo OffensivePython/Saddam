@@ -1,7 +1,6 @@
 # Saddam
 DDoS Tool that supports:
-  * DNS Amplification (Domain Name System)
-  * DNS Amplification with txt query requests
+  * DNS Amplification with "any" querys and txt dns query
   * NTP Amplification (Network Time Protocol)
   * SNMP Amplification (Simple Network Management Protocol)
   * SSDP Amplification (Simple Service Discovery Protocol)
