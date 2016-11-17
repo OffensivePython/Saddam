@@ -1,15 +1,26 @@
-# dns scanner for saddam
-Note this code is not mind... i will be adding more options in the future.
+# Scanners for saddam
+ includes 
+ * dns scanner
+ * ntp scanner
 
 # Requierments
- * pthread.h (sys lib)
- * stropts.h (sys lib)
  * gcc
  
+# dns scanner: 
+
 # compile: 
-  * gcc main.c -pthread -o DNSAmpScanner
+  * gcc dns.c -pthread -o dns-scanner
   
 # usage 
 ```
-./DNSAmpScanner <ip class start> <ip class end> <outfile> <threads> <scan delay in ms>
+./dns-scanner <ip class start> <ip class end> <outfile> <threads> <scan delay in ms>
+```
+# ntp scanner:
+
+# compile: 
+  * gcc ntp.c -pthread -o ntp-scanner
+  
+# usage 
+```
+./ntp-scanner <ip range start (192.0.0.0)> <ip range end (198.255.255.255)> <outfile> <threads> <scan delay in ms>
 ```
