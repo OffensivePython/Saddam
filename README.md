@@ -4,6 +4,7 @@ DDoS Tool that supports:
   * NTP Amplification (Network Time Protocol)
   * SNMP Amplification (Simple Network Management Protocol)
   * SSDP Amplification (Simple Service Discovery Protocol)
+  * LDAP Amplification (Lightweight Directory Access Protocol)
 
 ![](http://2.bp.blogspot.com/-TkNwFJsznto/VOs3l0uSgDI/AAAAAAAAALQ/S5BNt8ULwpg/s1600/9.png)
 
