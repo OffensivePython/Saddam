@@ -134,7 +134,7 @@ def Monitor():
 	start = time.time()
 	while True:
 		try:
-			current = time.time() - start
+			current = time.time() - start or 1
 			bps = (nbytes*8)/current
 			pps = npackets/current
 			out = FMT.format(Calc(npackets, 1000), 
