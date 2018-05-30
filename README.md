@@ -4,7 +4,8 @@ DDoS Tool that supports:
   * NTP Amplification (Network Time Protocol)
   * SNMP Amplification (Simple Network Management Protocol)
   * SSDP Amplification (Simple Service Discovery Protocol)
-
+  * LDAP Amplification (Lightwight Directory Access Protocol)
+  
 ![](http://2.bp.blogspot.com/-TkNwFJsznto/VOs3l0uSgDI/AAAAAAAAALQ/S5BNt8ULwpg/s1600/9.png)
 
 Read more about DDoS Amplification Attacks [here](http://www.pythonforpentesting.com/2015/02/ddos-amplification-attacks.html)
@@ -38,5 +39,6 @@ Options:
   -n FILE, --ntp=FILE   NTP Amplification file
   -s FILE, --snmp=FILE  SNMP Amplification file
   -p FILE, --ssdp=FILE  SSDP Amplification file
+  -l FILE, --ldap=FILE  LDAP Amplification file
   -t N, --threads=N     Number of threads (default=1)
 ```
