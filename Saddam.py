@@ -4,12 +4,17 @@ import time
 import socket
 import struct
 import threading
-import os
+import os.path
+import urllib2
 from random import randint
 from optparse import OptionParser
 from os import path
 if path.isfile('pinject.py') == False:
-	os.system("wget https://raw.githubusercontent.com/OffensivePython/Pinject/master/pinject.py")
+	print "Pinject.py not found, downloading..."
+	with open('pinject.py','wb') as f:
+		f.write(urllib2.urlopen('https://raw.githubusercontent.com/OffensivePython/Pinject/master/pinject.py').read())
+		f.close()
+	print "Download Complete!"
 from pinject import IP, UDP
 
 USAGE = '''
