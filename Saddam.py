@@ -4,8 +4,12 @@ import time
 import socket
 import struct
 import threading
+import os
 from random import randint
 from optparse import OptionParser
+from os import path
+if path.isfile('pinject.py') == False:
+	os.system("wget https://raw.githubusercontent.com/OffensivePython/Pinject/master/pinject.py")
 from pinject import IP, UDP
 
 USAGE = '''
