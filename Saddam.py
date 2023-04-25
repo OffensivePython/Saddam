@@ -4,7 +4,6 @@ import time
 import socket
 import struct
 import threading
-import os.path
 import urllib2
 from random import randint
 from optparse import OptionParser
